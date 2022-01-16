@@ -30,4 +30,22 @@ it("should get by id", async () => {
   expect(headingElement).toBeInTheDocument();
 });
 
-// FIND BY
+// FIND B Y
+it("should get find by id", async () => {
+  render(<Header title="My Header" />);
+  const headingElement = await screen.findByText(/my header/i);
+  expect(headingElement).toBeInTheDocument();
+});
+
+//Querry By
+it("should query by", async () => {
+  render(<Header title="My Header" />);
+  const headingElement = screen.queryByText(/dogs/i);
+  expect(headingElement).not.toBeInTheDocument();
+});
+
+it("should use get all by role", async () => {
+  render(<Header title="My Header" />);
+  const headingElements = screen.getAllByRole("heading");
+  expect(headingElements.length).toBe(2);
+});
